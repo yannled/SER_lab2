@@ -1,0 +1,15 @@
+# latex files
+*.aux
+*.log
+*.synctex.gz
+*.toc
+
+# intelliJ files
+*.iml
+.idea
+
+# tmp files
+*.swp
+
+# project files
+SER_PLEX_Depart/PLEX-Admin/src/main/resources/hibernate.properties
