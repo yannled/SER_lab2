@@ -41,14 +41,10 @@ public class ControleurXMLCreation {
 					long currentTime = System.currentTimeMillis();
 					try {
 						globalData = ormAccess.GET_GLOBAL_DATA();
-						mainGUI.setWarningMessage("Creation XML: Fonction non encore implementee");
-						Document document = null;
-						Element root = null;
-						File xmlFile = new File("generated-sources/cinema.xml");
+						//mainGUI.setWarningMessage("Creation XML: Fonction non encore implementee");
 
-						if(xmlFile.exists()){
-							FileInputStream fis = new FileInputStream(xmlFile);
-						}
+						XmlCreation xml= new XmlCreation(globalData);
+						xml.create();
 
 					}
 					catch (Exception e){
