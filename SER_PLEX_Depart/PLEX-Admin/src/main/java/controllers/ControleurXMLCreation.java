@@ -3,11 +3,7 @@ package controllers;
 import models.*;
 import views.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.BufferedWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +42,14 @@ public class ControleurXMLCreation {
 					try {
 						globalData = ormAccess.GET_GLOBAL_DATA();
 						mainGUI.setWarningMessage("Creation XML: Fonction non encore implementee");
+						Document document = null;
+						Element root = null;
+						File xmlFile = new File("generated-sources/cinema.xml");
+
+						if(xmlFile.exists()){
+							FileInputStream fis = new FileInputStream(xmlFile);
+						}
+
 					}
 					catch (Exception e){
 						mainGUI.setErrorMessage("Construction XML impossible", e.toString());
