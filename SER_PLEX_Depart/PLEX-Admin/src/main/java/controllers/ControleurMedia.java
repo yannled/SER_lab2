@@ -24,10 +24,13 @@ public class ControleurMedia {
 				//long currentTime = System.currentTimeMillis();
 				try {
 					globalData = ormAccess.GET_GLOBAL_DATA();
-					mainGUI.setWarningMessage("Envoi JSON: Fonction non encore implementee");
+					//mainGUI.setWarningMessage("Envoi JSON: Fonction non encore implementee");
+
+					JsonCreation json = new JsonCreation(globalData);
+					json.create();
 				}
 				catch (Exception e){
-					mainGUI.setErrorMessage("Construction XML impossible", e.toString());
+					mainGUI.setErrorMessage("Construction JSON impossible", e.toString());
 				}
 			}
 		}.start();
