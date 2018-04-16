@@ -19,27 +19,26 @@ public class JsonCreation {
 
     public void create() {
 
-        //ProjectionsJson projectionsJson = new ProjectionsJson();
-
         JsonObject projectionsObject = new JsonObject();
         JsonArray projections = new JsonArray();
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+        // parcours de toutes les projections et création des objets Json pour chacune d'elle
         for (Projection projection : globalData.getProjections()) {
 
             JsonObject projectionObject = new JsonObject();
+            JsonObject projectionObjectComplet = new JsonObject();
             JsonObject actorObject = new JsonObject();
 
             projectionObject.addProperty("TitreFilm", projection.getFilm().getTitre());
 
+            // Formater la date
             SimpleDateFormat format1 = new SimpleDateFormat("dd-mm-yyyy");
             String projectionDate = format1.format(projection.getDateHeure().getTime());
             projectionObject. addProperty("DateProjection", projectionDate);
 
-            //Set<RoleActeur> roles = projection.getFilm().getRoles();
-
-            // Récupére le 1er ROle et le deuxième
+            // Récupére le 1er et 2èeme Role
             int i = 0;
             RoleActeur role1 = new RoleActeur();
             RoleActeur role2  = new RoleActeur();
@@ -58,25 +57,22 @@ public class JsonCreation {
             }
 
             actorObject.addProperty("1er Role", role1.getActeur().getNom());
-
             actorObject.addProperty("2eme Role", role2.getActeur().getNom());
 
-
+            // ajout de l'objet acteur à la projection
             projectionObject.add("Acteurs", actorObject);
 
-            projections.add(projectionObject);
+            // ajout de l'object projection à un élément englobant l'objet projection
+            projectionObjectComplet.add("Projection", projectionObject);
 
-            projectionsObject.add("Projections", projections);
+            // ajout de l'objet projeciton à la list de projection
+            projections.add(projectionObjectComplet);
 
-            // créé les acteurs
-            //ActeurJson acteurs = new ActeurJson(role1.getActeur().getNom(), role2.getActeur().getNom());
-
-            // créé la projection
-            //ProjectionJson Projections = new ProjectionJson(projection.getFilm().getTitre(),
-                    //projection.getDateHeure().getTime().toString(), acteurs);
-
-            //projectionsJson.addProjection(Projections);
         }
+
+        //ajout de la liste de projection à l'objet Projections
+        projectionsObject.add("Projections", projections);
+
 
         try (FileWriter writer = new FileWriter("json.json")) {
 
