@@ -1,7 +1,9 @@
 package controllers;
 
 import models.*;
+import org.dom4j.DocumentType;
 import org.jdom2.Attribute;
+import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -47,6 +49,10 @@ public class XmlCreation {
     public void create() {
         Document document = new Document();
         Element racine = new Element("cinema");
+        DocType docktype = new DocType(racine.getName());
+        docktype.setSystemID("xml.dtd");
+        document.setDocType(docktype);
+
 
         document.addContent(racine);
 
@@ -69,7 +75,7 @@ public class XmlCreation {
 
             Element e_filmProj = new Element("filmProj");
             e_projection.addContent(e_filmProj);
-            e_filmProj.setAttribute("filmId", String.valueOf(projection.getFilm().getId()));
+            e_filmProj.setAttribute("filmId", "id_" + String.valueOf(projection.getFilm().getId()));
 
             Element e_acteursProj = new Element("acteursProj");
             e_projection.addContent(e_acteursProj);
@@ -78,7 +84,7 @@ public class XmlCreation {
 
                 Element e_acteurProj = new Element("acteurProj");
                 e_acteursProj.addContent(e_acteurProj);
-                Attribute a1 = new Attribute("acteurProjId", String.valueOf(role.getActeur().getId()));
+                Attribute a1 = new Attribute("acteurProjId", "id_" +  String.valueOf(role.getActeur().getId()));
                 Attribute a2 = new Attribute("nomRole", role.getPersonnage());
                 Attribute a3 = new Attribute("placeRole", String.valueOf(role.getPlace()));
                 List<Attribute> attr = new ArrayList<>();
@@ -100,7 +106,7 @@ public class XmlCreation {
 
             Element e_film = new Element("film");
             e_films.addContent(e_film);
-            e_film.setAttribute("filmId",String.valueOf(film.getId()));
+            e_film.setAttribute("filmId","id_" + String.valueOf(film.getId()));
 
             Element e_titre = new Element("titre");
             e_film.addContent(e_titre);
@@ -117,7 +123,7 @@ public class XmlCreation {
             for(Critique critique : film.getCritiques()){
                 Element e_critiqueFilm = new Element("critiqueFilm");
                 e_film.addContent(e_critiqueFilm);
-                e_critiqueFilm.setAttribute("critiqueFilmId", String.valueOf(critique.getId()));
+                e_critiqueFilm.setAttribute("critiqueFilmId", "id_" + String.valueOf(critique.getId()));
             }
 
             Element e_genresFilm = new Element("genresFilm");
@@ -125,7 +131,7 @@ public class XmlCreation {
             for(Genre genre : film.getGenres()){
                 Element e_genreFilm = new Element("genreFilm");
                 e_genresFilm.addContent(e_genreFilm);
-                e_genreFilm.setAttribute("genreFilmId", String.valueOf(genre.getId()));
+                e_genreFilm.setAttribute("genreFilmId", "id_" + String.valueOf(genre.getId()));
             }
 
             Element e_motsCleFilm = new Element("motsCleFilm");
@@ -133,7 +139,7 @@ public class XmlCreation {
             for(Motcle mots: film.getMotcles()){
                 Element e_motCleFilm = new Element("motCleFilm");
                 e_motsCleFilm.addContent(e_motCleFilm);
-                e_motCleFilm.setAttribute("motCleFilmId", String.valueOf(mots.getId()));
+                e_motCleFilm.setAttribute("motCleFilmId", "id_" + String.valueOf(mots.getId()));
             }
 
             Element e_langagesFilm = new Element("langagesFilm");
@@ -141,7 +147,7 @@ public class XmlCreation {
             for(Langage langue: film.getLangages()){
                 Element e_langageFilm = new Element("langageFilm");
                 e_langagesFilm.addContent(e_langageFilm);
-                e_langageFilm.setAttribute("langageFilmId", String.valueOf(langue.getId()));
+                e_langageFilm.setAttribute("langageFilmId","id_" +  String.valueOf(langue.getId()));
             }
 
             Element e_photo = new Element("photo");
@@ -161,7 +167,7 @@ public class XmlCreation {
         for(Acteur acteur : acteurs){
             Element e_acteur = new Element("acteur");
             e_acteurs.addContent(e_acteur);
-            e_acteur.setAttribute("acteurId", String.valueOf(acteur.getId()));
+            e_acteur.setAttribute("acteurId", "id_" + String.valueOf(acteur.getId()));
 
             Element e_nom = new Element("nom");
             e_acteur.addContent(e_nom);
@@ -202,7 +208,7 @@ public class XmlCreation {
         for(Motcle mot : motsCles){
             Element e_motCle = new Element("motCle");
             e_motsCle.addContent(e_motCle);
-            e_motCle.setAttribute("motCleId", String.valueOf(mot.getId()));
+            e_motCle.setAttribute("motCleId", "id_" + String.valueOf(mot.getId()));
 
             Element e_labelMc = new Element("labelMc");
             e_motCle.addContent(e_labelMc);
@@ -217,7 +223,7 @@ public class XmlCreation {
         for(Genre genre : genres){
             Element e_genre = new Element("genre");
             e_genres.addContent(e_genre);
-            e_genre.setAttribute("genreId", String.valueOf(genre.getId()));
+            e_genre.setAttribute("genreId","id_" +  String.valueOf(genre.getId()));
 
             Element e_labelGe = new Element("labelGe");
             e_genre.addContent(e_labelGe);
@@ -232,7 +238,7 @@ public class XmlCreation {
         for(Langage langage : langages){
             Element e_langage = new Element("langage");
             e_langages.addContent(e_langage);
-            e_langage.setAttribute("langageId", String.valueOf(langage.getId()));
+            e_langage.setAttribute("langageId", "id_" + String.valueOf(langage.getId()));
 
             Element e_labelLa = new Element("labelLa");
             e_langage.addContent(e_labelLa);
@@ -247,7 +253,7 @@ public class XmlCreation {
         for(Critique critique : critiques){
             Element e_critique = new Element("critique");
             e_critiques.addContent(e_critique);
-            e_critique.setAttribute("critiqueId", String.valueOf(critique.getId()));
+            e_critique.setAttribute("critiqueId","id_" +  String.valueOf(critique.getId()));
 
             Element e_texte = new Element("texte");
             e_critique.addContent(e_texte);
