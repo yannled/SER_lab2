@@ -1,0 +1,65 @@
+<!ELEMENT cinema (projections, films, acteurs, motsCle, genres, langages, critiques)>
+        <!ELEMENT projections (projection*)>
+            <!ELEMENT projection (dateProjection, numeroSalle, filmProj, acteursProj*)>
+                <!ELEMENT dateProjection (#PCDATA)>
+                <!ELEMENT numeroSalle (#PCDATA)>
+                <!ELEMENT filmProj (#PCDATA)>
+                <!ATTLIST filmProj filmId IDREF #REQUIRED>
+                <!ELEMENT acteursProj (acteurProj*)>
+                    <!ELEMENT acteurProj (#PCDATA)>
+                    <!ATTLIST acteurProj acteurProjId IDREF #REQUIRED>
+                    <!ATTLIST acteurProj nomRole CDATA #IMPLIED>
+                    <!ATTLIST acteurProj placeRole CDATA #IMPLIED>
+
+        <!ELEMENT films (film*)>
+            <!ELEMENT film (titre, synopsis, duree, critiqueFilm?, genresFilm, motsCleFilm, langagesFilm*, photo)>
+                <!ATTLIST film filmId ID #REQUIRED>
+                <!ELEMENT titre (#PCDATA)>
+                <!ELEMENT synopsis (#PCDATA)>
+                <!ELEMENT duree (#PCDATA)>
+                <!ELEMENT critiqueFilm EMPTY>
+                <!ATTLIST critiqueFilm critiqueFilmId IDREF #IMPLIED>
+                <!ELEMENT genresFilm (genreFilm*)>
+                    <!ELEMENT genreFilm EMPTY>
+                    <!ATTLIST genreFilm genreFilmId IDREF #IMPLIED>
+                <!ELEMENT motsCleFilm (motCleFilm*)>
+                    <!ELEMENT motCleFilm EMPTY>
+                    <!ATTLIST motCleFilm motCleFilmId IDREF #IMPLIED>
+                <!ELEMENT langagesFilm (langageFilm*)>
+                    <!ELEMENT langageFilm EMPTY>
+                    <!ATTLIST langageFilm langageFilmId IDREF #IMPLIED>
+                <!ELEMENT photo EMPTY>
+                <!ATTLIST photo url CDATA #IMPLIED>
+
+        <!ELEMENT acteurs (acteur*)>
+            <!ELEMENT acteur (nom, nomNaissance, biographie, sexe, dateNaissance, dateDeces)>
+            <!ATTLIST acteur acteurId ID #REQUIRED>
+            <!ELEMENT nom (#PCDATA)>
+            <!ELEMENT nomNaissance (#PCDATA)>
+            <!ELEMENT biographie (#PCDATA)>
+            <!ELEMENT sexe (#PCDATA)>
+            <!ATTLIST sexe type (MASCULIN|FEMININ|TRANSGENRE|SHEMALE) #REQUIRED>
+            <!ELEMENT dateNaissance (#PCDATA)>
+            <!ELEMENT dateDeces (#PCDATA)>
+
+        <!ELEMENT motsCle (motCle*)>
+            <!ELEMENT motCle (labelMc)>
+            <!ATTLIST motCle motCleId ID #REQUIRED>
+            <!ELEMENT labelMc (#PCDATA)>
+
+        <!ELEMENT genres (genre*)>
+            <!ELEMENT genre (labelGe*)>
+            <!ATTLIST genre genreId ID #REQUIRED>
+            <!ELEMENT labelGe (#PCDATA)>
+
+        <!ELEMENT langages (langage*)>
+            <!ELEMENT langage (labelLa)>
+            <!ATTLIST langage langageId ID #REQUIRED>
+            <!ELEMENT labelLa (#PCDATA)>
+
+        <!ELEMENT critiques (critique*)>
+            <!ELEMENT critique (texte, note)>
+            <!ATTLIST critique critiqueId ID #REQUIRED>
+            <!ELEMENT texte (#PCDATA)>
+            <!ELEMENT note (#PCDATA)>
+
