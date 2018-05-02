@@ -28,7 +28,6 @@ public class JsonCreation {
         for (Projection projection : globalData.getProjections()) {
 
             JsonObject projectionObject = new JsonObject();
-            JsonObject projectionObjectComplet = new JsonObject();
             JsonObject actorObject = new JsonObject();
 
             projectionObject.addProperty("TitreFilm", projection.getFilm().getTitre());
@@ -36,7 +35,7 @@ public class JsonCreation {
             // Formater la date
             SimpleDateFormat format1 = new SimpleDateFormat("dd-mm-yyyy");
             String projectionDate = format1.format(projection.getDateHeure().getTime());
-            projectionObject. addProperty("DateProjection", projectionDate);
+            projectionObject.addProperty("DateProjection", projectionDate);
 
             // Récupére le 1er et 2èeme Role
             int i = 0;
@@ -62,11 +61,8 @@ public class JsonCreation {
             // ajout de l'objet acteur à la projection
             projectionObject.add("Acteurs", actorObject);
 
-            // ajout de l'object projection à un élément englobant l'objet projection
-            projectionObjectComplet.add("Projection", projectionObject);
-
             // ajout de l'objet projeciton à la list de projection
-            projections.add(projectionObjectComplet);
+            projections.add(projectionObject);
 
         }
 

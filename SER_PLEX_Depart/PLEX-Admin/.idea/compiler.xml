@@ -10,5 +10,9 @@
         <module name="WFC-Interfaces" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PLEX-Admin" target="1.8" />
+      <module name="WFC-Interfaces" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
